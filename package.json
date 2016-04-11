@@ -1,6 +1,6 @@
 {
-  "name": "cas-authentication",
-  "version": "0.0.8",
+  "name": "r-cas-authentication",
+  "version": "1.0.0",
   "description": "A CAS authentication library designed to be used as middleware for an Express server.",
   "keywords": [
     "cas",
@@ -12,19 +12,19 @@
     "middleware",
     "express"
   ],
-  "homepage": "https://github.com/kylepixel/cas-authentication",
+  "homepage": "https://github.com/matthewvalimaki/cas-authentication",
   "bugs": {
-    "url": "https://github.com/kylepixel/cas-authentication/issues"
+    "url": "https://github.com/matthewvalimaki/cas-authentication/issues"
   },
   "license": "MIT",
-  "author": "Kyle Maguire <kylepixel@gmail.com>",
+  "author": "Matthew Valimaki <matthew.valimaki@gmail.com>",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kylepixel/cas-authentication.git"
+    "url": "https://github.com/matthewvalimaki/cas-authentication.git"
   },
   "dependencies": {
-    "xml2js": "^0.4.8"
+    "xml2js": "^0.4.16"
   },
   "devDependencies": {
     "express": "^4.12.3",
