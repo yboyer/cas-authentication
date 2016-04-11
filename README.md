@@ -22,16 +22,18 @@ It also provides two route endpoint functions:
 var CASAuthentication = require('cas-authentication');
 
 var cas = new CASAuthentication({
-    cas_url         : 'https://my-cas-host.com/cas',
-    service_url     : 'https://my-service-host.com',
-    cas_version     : '3.0',
-    renew           : false,
-    is_dev_mode     : false,
-    dev_mode_user   : '',
-    dev_mode_info   : {},
-    session_name    : 'cas_user',
-    session_info    : 'cas_userinfo',
-    destroy_session : false
+    cas_url             : 'https://my-cas-host.com/cas',
+    cas_internal_url    : 'https://my-cas-host.service.com/cas',
+    service_url         : 'https://my-service-host.com',
+    cas_port            : 8443,
+    cas_version         : '3.0',
+    renew               : false,
+    is_dev_mode         : false,
+    dev_mode_user       : '',
+    dev_mode_info       : {},
+    session_name        : 'cas_user',
+    session_info        : 'cas_userinfo',
+    destroy_session     : false
 });
 ```
 
@@ -40,7 +42,9 @@ var cas = new CASAuthentication({
 | Name | Type | Description | Default |
 |:-----|:----:|:------------|:-------:|
 | cas_url | _string_ | The URL of the CAS server. | _(required)_ |
+| cas_internal_url | _string_ | The URL of the CAS server in internal network (not exposed to browser). | null |
 | service_url | _string_ | The URL of the application which is registered with the CAS server as a valid service. | _(required)_ |
+| cas_port | _int_ | The port of the CAS instance. | null |
 | cas_version | _"1.0"\|"2.0\|"3.0"\|"saml1.1"_ | The CAS protocol version. | _"3.0"_ |
 | renew | _boolean_ | If true, an unauthenticated client will be required to login to the CAS system regardless of whether a single sign-on session exists. | _false_ |
 | is_dev_mode | _boolean_ | If true, no CAS authentication will be used and the session CAS variable will be set to whatever user is specified as _dev_mode_user_. | _false_ |
