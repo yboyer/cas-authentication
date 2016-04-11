@@ -15,8 +15,10 @@ var AUTH_TYPE = {
 };
 
 /**
- * @typedef {Object} CAS_options
+ * @typedef  {Object}  CAS_options
  * @property {string}  cas_url
+ * @property {string}  cas_internal_url
+ * @property {int}     cas_port
  * @property {string}  service_url
  * @property {('1.0'|'2.0'|'3.0'|'saml1.1')} [cas_version='3.0']
  * @property {boolean} [renew=false]
@@ -144,11 +146,15 @@ function CASAuthentication(options) {
         throw new Error('The supplied CAS version ("' + this.cas_version + '") is not supported.');
     }
 
+    // exposed to browser via redirects
     this.cas_url         = options.cas_url;
-    var parsed_cas_url   = url.parse(this.cas_url);
+    
+    // internal communication
+    var parsed_cas_url   = url.parse(options.cas_internal_url !== undefined ? options.cas_internal_url : this.cas_url);
     this.request_client  = parsed_cas_url.protocol === 'http:' ? http : https;
     this.cas_host        = parsed_cas_url.hostname;
-    this.cas_port        = parsed_cas_url.protocol === 'http:' ? 80 : 443;
+    // use port if specified, default to 80 or 443 per `cas_url` protocol
+    this.cas_port        = options.cas_port !== undefined ? options.cas_port : parsed_cas_url.protocol === 'http:' ? 80 : 443;
     this.cas_path        = parsed_cas_url.pathname;
 
     this.service_url     = options.service_url;
