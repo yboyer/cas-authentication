@@ -1,3 +1,6 @@
+Forked from https://github.com/kylepixel/cas-authentication because:
+ - Needed to get issues fixed.
+
 # Express CAS Authentication
 
 This is a CAS authentication library designed to be used with an Express server.
