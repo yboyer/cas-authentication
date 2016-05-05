@@ -18,6 +18,7 @@ var AUTH_TYPE = {
  * @typedef  {Object}  CAS_options
  * @property {string}  cas_url
  * @property {string}  cas_internal_url
+ * @property {Buffer}  certificat
  * @property {int}     cas_port
  * @property {string}  service_url
  * @property {('1.0'|'2.0'|'3.0'|'saml1.1')} [cas_version='3.0']
@@ -148,11 +149,12 @@ function CASAuthentication(options) {
 
     // exposed to browser via redirects
     this.cas_url         = options.cas_url;
-    
+
     // internal communication
     var parsed_cas_url   = url.parse(options.cas_internal_url !== undefined ? options.cas_internal_url : this.cas_url);
     this.request_client  = parsed_cas_url.protocol === 'http:' ? http : https;
     this.cas_host        = parsed_cas_url.hostname;
+    this.certificat      = options.certificat;
     // use port if specified, default to 80 or 443 per `cas_url` protocol
     this.cas_port        = options.cas_port !== undefined ? options.cas_port : parsed_cas_url.protocol === 'http:' ? 80 : 443;
     this.cas_path        = parsed_cas_url.pathname;
@@ -257,7 +259,7 @@ CASAuthentication.prototype._login = function(req, res, next) {
     var query = {
         service: this.service_url + url.parse(req.url).pathname
     };
-    
+
     // see: https://jasig.github.io/cas/development/protocol/CAS-Protocol-Specification.html#parameters
     // unless option is `true` do not set it as setting it equals `true` on the CAS server
     if (this.renew === true) {
@@ -304,6 +306,8 @@ CASAuthentication.prototype._handleTicket = function(req, res, next) {
     var requestOptions = {
         host: this.cas_host,
         port: this.cas_port,
+        ca: this.certificat,
+        rejectUnauthorized: false
     };
 
     if (['1.0', '2.0', '3.0'].indexOf(this.cas_version) >= 0){

@@ -1,5 +1,13 @@
-Forked from https://github.com/kylepixel/cas-authentication because:
- - Needed to get issues fixed.
+Forked from https://github.com/matthewvalimaki/cas-authentication because:
+ - Certificat usage needed.
+
+---
+
+>###### matthewvalimaki
+> Forked from https://github.com/kylepixel/cas-authentication because:
+> - Needed to get issues fixed.
+
+---
 
 # Express CAS Authentication
 
@@ -28,6 +36,7 @@ var cas = new CASAuthentication({
     cas_url             : 'https://my-cas-host.com/cas',
     cas_internal_url    : 'https://my-cas-host.service.com/cas',
     service_url         : 'https://my-service-host.com',
+    certificat          : require('fs').readFileSync('tcs-chain.pem'),
     cas_port            : 8443,
     cas_version         : '3.0',
     renew               : false,

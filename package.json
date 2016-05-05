@@ -1,5 +1,5 @@
 {
-  "name": "r-cas-authentication",
+  "name": "cert-cas-authentication",
   "version": "1.0.0",
   "description": "A CAS authentication library designed to be used as middleware for an Express server.",
   "keywords": [
@@ -12,16 +12,16 @@
     "middleware",
     "express"
   ],
-  "homepage": "https://github.com/matthewvalimaki/cas-authentication",
+  "homepage": "https://github.com/yboyer/cas-authentication",
   "bugs": {
-    "url": "https://github.com/matthewvalimaki/cas-authentication/issues"
+    "url": "https://github.com/yboyer/cas-authentication/issues"
   },
   "license": "MIT",
-  "author": "Matthew Valimaki <matthew.valimaki@gmail.com>",
+  "author": "Yoann Boyer",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/matthewvalimaki/cas-authentication.git"
+    "url": "https://github.com/yboyer/cas-authentication.git"
   },
   "dependencies": {
     "xml2js": "^0.4.16"
